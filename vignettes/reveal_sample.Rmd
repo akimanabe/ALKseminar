@@ -1,0 +1,16 @@
+---
+title: "Sample presentation using revealjs"
+output: revealjs::revealjs_presentation
+---
+
+# Hoge
+
+This is a practice presentation using revealjs and rmarkdown
+
+# Piyo
+
+And so on...
+
+## Fuga
+
+Is this page 2-2?
