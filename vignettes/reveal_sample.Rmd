@@ -1,16 +1,44 @@
 ---
 title: "Sample presentation using revealjs"
-output: revealjs::revealjs_presentation
+output:
+  revealjs::revealjs_presentation:
+    incremental: true
+    pandoc_args: [
+      '--from', 'markdown-auto_identifiers'
+    ]
+    transition: "fade"
 ---
 
-# Hoge
+# ALK勉強会
+<br><br>
 
-This is a practice presentation using revealjs and rmarkdown
+底魚第4グループ<br>
+任期付研究員 <br>
+真鍋明弘 <br><br>
+09-29-2020
 
-# Piyo
+# おしながき
 
-And so on...
+1. 現在のCAAの計算方法のおさらい
+1. の問題点
+1. 他の手法の紹介
+    - Inverse-ALK
+    - Foward-Inverse-ALK
+1. デモ(IALK)
+1. 今後取り組みたいこと
 
-## Fuga
+# 現行のCAA計算方法
+甲やってる
 
-Is this page 2-2?
+## 問題点
+いろいろあるんだ
+
+hogehogehoge
+
+## 日本のALKは？
+Default ALKとか
+混合正規分布を見るとか
+えいやっと職人芸
+
+## 問題点は
+職人芸
