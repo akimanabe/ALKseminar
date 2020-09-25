@@ -28,17 +28,37 @@ output:
 1. 今後取り組みたいこと
 
 # 現行のCAA計算方法
+
 甲やってる
 
 ## 問題点
+
 いろいろあるんだ
 
-hogehogehoge
-
 ## 日本のALKは？
+
 Default ALKとか
 混合正規分布を見るとか
 えいやっと職人芸
 
 ## 問題点は
 職人芸
+
+# 他の手法の紹介
+
+## Inverse Age Length Key
+
+- 実は新しい手法ではない
+- 1980年代に確立
+    - Clark (1981)
+    - Bartoo & Parker (1983)
+    - Hoenig & Heisey (1987)
+    - Kimura & Chikuni (1987)
+
+## Inverse ALK
+各年齢幅におけるサイズ組成を表したもの
+
+
+
+
+

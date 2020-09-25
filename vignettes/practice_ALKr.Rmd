@@ -65,3 +65,20 @@ sampledata %>%
   ALKr::calc_invALK()
 
 ```
+
+```{r}
+# create age-length raw data
+foo <-
+ALK2::al_sample %>%
+  table() %>%
+  as.matrix() %>%
+  ALKr::calc_ALK()
+```
+
+```{r}
+# create inverse key
+len_freq <-
+  ALK2::freq_sample %>%
+  table()
+
+```
