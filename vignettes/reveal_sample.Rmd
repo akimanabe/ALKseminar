@@ -2,7 +2,7 @@
 title: "Sample presentation using revealjs"
 output:
   revealjs::revealjs_presentation:
-    incremental: true
+    incremental: false
     pandoc_args: [
       '--from', 'markdown-auto_identifiers'
     ]
@@ -58,7 +58,33 @@ Default ALKとか
 ## Inverse ALK
 各年齢幅におけるサイズ組成を表したもの
 
+# 先行研究1
+Stochastic age-frequency estimation using the von Bertalanffy growth equation
 
+Bartoo and Parker (1983) *Fish. Bull.*
 
+- 年齢査定サンプルを用いてVBをあてはめ
+- 体長あたりの年齢を推定
 
+Von Bertalanffy 成長式
+$$
+L_t = L_\infty (1-exp[-k(t-t_0)]) 
+$$
+<br>
 
+体長あたりの年齢推定式
+$$
+t = t_0 + ln(1 - L_t / L_\infty) / (-k)
+$$
+
+## 問題
+さまざまなバイアス
+
+- 各体長の年齢が点推定
+- 成長速度が低下する高年齢期の分解
+- 各年齢の体長オーバーラップ問題
+- VBGFのLinfより大きい魚が取れた場合は？
+- サイズによっては実測された年齢より大きくなる場合
+
+## 解決法
+P行列を用いて確率論的に解析
