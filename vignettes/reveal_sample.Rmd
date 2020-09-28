@@ -80,45 +80,25 @@ Data poorや欠損値が多い魚種でも対応できる方法がないか様�
 - Inverse ALK
 - Forward-Inverse ALK
 
-## Inverse Age Length Key
+# Stochastic age-frequency estimation
 
-- 実は新しい手法ではない
-- 1980年代に確立
-    - Clark (1981)
-    - Bartoo & Parker (1983)
-    - Hoenig & Heisey (1987)
-    - Kimura & Chikuni (1987)
+Bartoo and Parker (1983) Fish. Bull.
 
-## Inverse ALK
-各年齢幅におけるサイズ組成を表したもの
+- von Bertalanffy成長式を利用
+- VBGFから各体長に対応する年齢を推定
+- P行列を用いて確率論的に体長組成を年齢へ分解
 
-# 先行研究1
-Stochastic age-frequency estimation using the von Bertalanffy growth equation
+## 良い点と悪い点
 
-Bartoo and Parker (1983) *Fish. Bull.*
+良い点
 
-- 年齢査定サンプルを用いてVBをあてはめ
-- 体長あたりの年齢を推定
+- VBGFのパラメーターが推定されていれば使用可能
+- データが無い場合に便利
 
-Von Bertalanffy 成長式
-$$
-L_t = L_\infty (1-exp[-k(t-t_0)]) 
-$$
-<br>
+悪い点
 
-体長あたりの年齢推定式
-$$
-t = t_0 + ln(1 - L_t / L_\infty) / (-k)
-$$
+- 世代間の成長速度の変化に脆弱
+- L_\inftyより大型の個体に対応できない
+- 大きいサイズでは少しの差が大きな年齢の差に繋がるため
 
-## 問題
-さまざまなバイアス
 
-- 各体長の年齢が点推定
-- 成長速度が低下する高年齢期の分解
-- 各年齢の体長オーバーラップ問題
-- VBGFのLinfより大きい魚が取れた場合は？
-- サイズによっては実測された年齢より大きくなる場合
-
-## 解決法
-P行列を用いて確率論的に解析
