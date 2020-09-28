@@ -19,4 +19,9 @@ Suggests:
 VignetteBuilder: knitr
 Imports: 
     dplyr,
-    knitr
+    knitr,
+    ALKr,
+    ALK2
+Remotes:
+    akimanabe/ALK2,
+    zeloff/ALKr

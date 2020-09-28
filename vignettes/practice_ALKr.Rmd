@@ -1,0 +1,84 @@
+---
+title: "practice_ALKr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{practice_ALKr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ALKseminar)
+library(ALK2)
+library(ALKr)
+```
+
+```{r}
+# ALKr demonstration
+
+library(ALK2)
+
+ALK2::sampledata %>%
+  dplyr::group_by(Age) %>%
+  dplyr::summarize(Age, Length)
+
+ALK2::forward_alk(ALK2::sampledata) %>%
+  dplyr::select(-prop) %>%
+  data.table::as.data.table() %>%
+  as.matrix(rownames = "Age",
+            rownames.value = Age,
+            colnames = "Length",
+            colnames.value = Length)
+
+DT <- data.table(A = letters[1:10], X = 1:10, Y = 11:20)
+as.matrix(DT) # character matrix
+as.matrix(DT, rownames = "A")
+as.matrix(DT, rownames = 1)
+class(as.matrix(DT, rownames = TRUE))
+
+DT <- as.matrix
+
+
+as.matrix(DT, colnames = "Y")
+
+sampledata %>%
+  table() %>%
+  as.matrix() %>%
+  ALKr::calc_ALK()
+
+?ALKr::calc_ALK
+
+sampledata %>%
+  table() %>%
+  ALKr::calc_ALK()
+
+
+sampledata %>%
+  table() %>%
+  ALKr::calc_invALK()
+
+```
+
+```{r}
+# create age-length raw data
+foo <-
+ALK2::al_sample %>%
+  table() %>%
+  as.matrix() %>%
+  ALKr::calc_ALK()
+```
+
+```{r}
+# create inverse key
+len_freq <-
+  ALK2::freq_sample %>%
+  table()
+
+```

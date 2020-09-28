@@ -1,0 +1,56 @@
+---
+title: "BartooParker"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BartooParker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tidyverse)
+library(ALK2)
+```
+
+```{r}
+
+# Bartoo adn Parker
+
+library(ALK2)
+
+vbgf <- 
+  function(dat, p){
+p[1]*(1-exp(-p[2]*(dat$Age-p[3])))
+  }
+
+# p <- c(40, 0.6, 0)
+
+rss <- function(p, dat = ALK2::sampledata){
+  -sum(dat$Length-vbgf(dat, p))^2
+}
+
+optim(p = c(35, 0.7, 0), rss)
+
+```
+
+```{r}
+
+# rss <- function(dat, p){
+#   -sum(dat$Length - vbgf(dat, p))^2
+# }
+
+# optim(p, rss)
+
+
+al_sample %>%
+  dplyr::group_by(Age) %>%
+  dplyr::summarize_all(funs(min, mean, max, sd))
+
+```

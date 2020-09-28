@@ -2,7 +2,7 @@
 title: "Sample presentation using revealjs"
 output:
   revealjs::revealjs_presentation:
-    incremental: true
+    incremental: false
     pandoc_args: [
       '--from', 'markdown-auto_identifiers'
     ]
@@ -10,35 +10,115 @@ output:
 ---
 
 # ALK勉強会
-<br><br>
+<br>
+CAA計算の問題と、新しいALK手法について
+<br>
+<br>
+底魚第4G
 
-底魚第4グループ<br>
-任期付研究員 <br>
-真鍋明弘 <br><br>
+真鍋明弘
+<br>
+<br>
 09-29-2020
 
-# おしながき
+# 本発表の内容
 
-1. 現在のCAAの計算方法のおさらい
-1. の問題点
-1. 他の手法の紹介
-    - Inverse-ALK
-    - Foward-Inverse-ALK
-1. デモ(IALK)
-1. 今後取り組みたいこと
+1. 水研で行われているCAA計算法のおさらい
+1. その問題点
+1. 新しいALK手法について（古いのも）
+    - 成長曲線を用いる手法
+    - 年齢ごとの体長構成を用いる手法
+    - 色々組み合わせた手法
 
-# 現行のCAA計算方法
-甲やってる
+# 水研でのCAA計算方法（マアジの場合）
+
+- 各月、各県の体長組成データを収集
+- 各年、各県の体長―年齢データを収集
+- データサイズは 体長組成>>年齢データ
+
+
+## 具体的なフロー
+- 各月、各県の体長組成データを収集
+- 対応する漁獲量で重みづけ
+- 体長^3を掛ける（体長別重量比）
+- 体長別重量比(%) × 漁獲量を算出（体長別重量）
+- 体長に対応する個体重量で割って体長別個体数を算出
+- 既知の体長-年齢関係を基に体長における年齢を分ける（Cohort Slicing）
+- 各年齢に対応する個体数を合計して**年齢別漁獲尾数** を算出
+
 
 ## 問題点
-いろいろあるんだ
 
-hogehogehoge
+- 職人芸
+    - 欠損値の補完
+    - 漁獲形態や漁場、群れの動向などを理解する必要あり
+    - 引継ぎが大変
+- 前提が多い
+    - 成長速度の変化はないと仮定
+    - 体長－重量関係の変化もない
+- Peer Reviewに対応できるか
 
-## 日本のALKは？
-Default ALKとか
-混合正規分布を見るとか
-えいやっと職人芸
+# 水研でのCAA計算方法（ヒラメの場合）
+- 年齢分解済で送られてくる
 
-## 問題点は
-職人芸
+## 問題点
+- ALKの構築方法を明示的に表せない
+- 年齢分解手法も明示的ではない
+- データの欠損などの補完法も明示的ではない
+- そもそも底魚は毎年どれだけが年齢査定されているか
+
+# 新しい？他のALK手法について
+
+Data poorや欠損値が多い魚種でも対応できる方法がないか様々なALK計算手法をReview
+- 1980年代から他の手法が提唱（もはや新手法ではない）
+- ただあまり使われていないだけ
+- いくつかを紹介
+
+## 紹介する手法
+
+- Stochastic age-frequency estimation
+- Inverse ALK
+- Forward-Inverse ALK
+
+## Inverse Age Length Key
+
+- 実は新しい手法ではない
+- 1980年代に確立
+    - Clark (1981)
+    - Bartoo & Parker (1983)
+    - Hoenig & Heisey (1987)
+    - Kimura & Chikuni (1987)
+
+## Inverse ALK
+各年齢幅におけるサイズ組成を表したもの
+
+# 先行研究1
+Stochastic age-frequency estimation using the von Bertalanffy growth equation
+
+Bartoo and Parker (1983) *Fish. Bull.*
+
+- 年齢査定サンプルを用いてVBをあてはめ
+- 体長あたりの年齢を推定
+
+Von Bertalanffy 成長式
+$$
+L_t = L_\infty (1-exp[-k(t-t_0)]) 
+$$
+<br>
+
+体長あたりの年齢推定式
+$$
+t = t_0 + ln(1 - L_t / L_\infty) / (-k)
+$$
+
+## 問題
+さまざまなバイアス
+
+- 各体長の年齢が点推定
+- 成長速度が低下する高年齢期の分解
+- 各年齢の体長オーバーラップ問題
+- VBGFのLinfより大きい魚が取れた場合は？
+- サイズによっては実測された年齢より大きくなる場合
+
+## 解決法
+P行列を用いて確率論的に解析
