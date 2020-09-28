@@ -22,3 +22,5 @@ Imports:
     knitr,
     ALKr,
     ALK2
+Remotes:
+    akimanabe/ALK2
